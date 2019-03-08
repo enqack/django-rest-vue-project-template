@@ -68,7 +68,12 @@
   </div>
 </footer>
 
+<!-- jqeury files -->
 {% bootstrap_javascript jquery='full' %}
+<script src="{% static 'js/datatables.min.js' %}"></script>
+<script src="{% static 'js/app_jquery.js' %}"></script>
+<!--\\ end jqeury files -->
+
 
 <!-- vue.js files -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
@@ -78,8 +83,9 @@
   Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 </script>
 
-<script src="{% static 'js/datatables.min.js' %}"></script>
-<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/app_vue.js' %}"></script>
+<!--\\ end vue.js files -->
+
 
 {% block extra_javascript %}
 
