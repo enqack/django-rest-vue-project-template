@@ -1,0 +1,26 @@
+{% extends 'base/index.html' %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+
+
+{% block head_title %}{{ block.super }} - {% trans 'Create User' %}{% endblock %}
+
+{% block content %}
+<main role="main" class="container">
+
+<div class="d-flex justify-content-center">
+  <div class="col-4">
+    <h2>{% trans 'Create user' %}</h2>
+    <form method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+      <button class="btn btn-primary" type="submit">{% trans 'Create' %}</button>
+      {% endbuttons %}
+    </form>
+  </div>
+</div>
+
+</main>
+{% endblock %}

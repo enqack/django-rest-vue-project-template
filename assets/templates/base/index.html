@@ -1,0 +1,89 @@
+{% load i18n %}
+{% load tz %}
+{% load static %}
+{% load bootstrap4 %}
+{% load fontawesome %}
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>{% block head_title %}{{ head_title }}{% endblock %}</title>
+
+    {% bootstrap_css %}
+    {% fontawesome_stylesheet %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/datatables.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static theme_file %}">
+
+    <style>
+        /* menu is fixed to the top */
+        body {
+          padding-top: 6rem;
+          padding-bottom: 8rem;
+        }
+
+        .footer {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+        }
+    </style>
+    {% block extra_style %}
+    {% endblock %}
+  </head>
+  <body>
+
+{% include 'base/menu.html' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+<div class="d-flex justify-content-center">
+  <div class="col-4 position-absolute" style="z-index:1;">
+    {% bootstrap_messages %}
+  </div>
+</div>
+
+{% block content %}
+<main role="main">
+  <div id="starting">
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Index</h1>
+    </div>
+  </div>
+  </div>
+</main>
+{% endblock %}
+
+{% get_current_timezone as TIME_ZONE %}
+<footer class="footer mt-auto py-3 bg-primary">
+  <div class="container d-flex justify-content-between">
+    <div class="text-muted">left footer</div>
+    <div class="text-muted">{{ current_time }} {{ TIME_ZONE }}</div>
+  </div>
+</footer>
+
+{% bootstrap_javascript jquery='full' %}
+
+<!-- vue.js files -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+
+<script type="text/javascript">
+  Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
+</script>
+
+<script src="{% static 'js/datatables.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+
+{% block extra_javascript %}
+
+{% endblock %}
+
+</body>
+</html>

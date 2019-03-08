@@ -1,0 +1,27 @@
+{% extends 'base/index.html' %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+
+
+{% block head_title %}{{ block.super }} - OpenID Log In{% endblock %}
+
+{% block content %}
+<main role="main" class="container">
+
+<div class="d-flex justify-content-center">
+  <div class="col-5">
+    <h1>{% trans 'OpenID Log In' %}</h1>
+
+    <form id="openid_login_form" class="openid_login" method="post" action="{% url 'openid_login' %}">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+        <button class="btn btn-primary" type="submit">{% trans 'Log In' %}</button>
+        {% endbuttons %}
+    </form>
+  </div>
+</div>
+
+</main>
+{% endblock %}

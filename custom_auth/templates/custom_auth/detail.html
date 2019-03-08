@@ -1,0 +1,90 @@
+{% extends 'base/index.html' %}
+
+{% load i18n %}
+
+
+{% block head_title %}{{ block.super }} - {% trans "User details" %}{% endblock %}
+
+{% block content %}
+<main role="main" class="container">
+
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+
+{% include 'custom_auth/user_card.html' %}
+
+<div class="d-flex justify-content-between mb-3">
+  <div class="col-4">
+    <a href="{% url 'avatar_change' %}" class="btn btn-link">{% trans "Change your avatar" %}</a>
+  </div>
+  <div class="col-4">
+    <a href="{% url 'account_change_password' %}" class="btn btn-link">{% trans "Change your password" %}</a>
+  </div>
+</div>
+
+
+<form>
+  <div class="form-group row">
+    <label for="inputName" class="col-md-3 col-form-label">First name</label>
+    <div class="col-md-9">
+      <input readonly type="text" aria-label="First name" class="form-control" value="{{ object.first_name }}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputName" class="col-md-3 col-form-label">Last name</label>
+    <div class="col-md-9">
+      <input readonly type="text" aria-label="Last name" class="form-control" value="{{ object.last_name }}">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputLastlogin" class="col-md-3 col-form-label">{% trans 'Last log in' %}</label>
+    <div class="col-md-9">
+      <input readonly type="text" class="form-control" id="inputLastlogin" value="{{ object.last_login }}" >
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputDatejoined" class="col-md-3 col-form-label">{% trans 'Date joined' %}</label>
+    <div class="col-md-9">
+      <input readonly type="text" class="form-control" id="inputDatejoined" value="{{ object.date_joined }}" >
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="id_theme" class="col-md-3 col-form-label">{% trans 'Theme' %}</label>
+    <div class="col-md-9">
+      <input readonly type="text" class="form-control" id="id_theme" value="{{ object.theme }}" >
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputTimezone" class="col-md-3 col-form-label">{% trans 'Time Zone' %}</label>
+    <div class="col-md-9">
+      <input readonly type="text" class="form-control" id="id_timezone" value="{{ object.timezone }}" >
+    </div>
+  </div>
+  {% if user.is_admin %}
+  <div class="form-group row">
+    <div class="col-md-3">{% trans 'Active' %}</div>
+    <div class="col-md-9">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck1">
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <div class="form-group row">
+    <div class="col-md-9">
+      <a href="{% url 'custom_auth:account_edit' user.id %}"
+         class="btn btn-primary">{% trans 'Edit' %}</a>
+    </div>
+  </div>
+</form>
+
+
+
+  </div>
+</div>
+
+</main>
+{% endblock %}

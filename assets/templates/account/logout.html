@@ -1,0 +1,39 @@
+{% extends 'base/index.html' %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+
+
+{% block head_title %}{{ block.super }} - {% trans "Log Out" %}{% endblock %}
+
+{% block content %}
+<main role="main" class="container">
+
+<div class="d-flex justify-content-center">
+  <div class="col-4">
+
+    <div class="card">
+      <div class="card-header">
+        <h4>{% trans 'Confirm log out' %}</h4>
+      </div>
+      <div class="card-body">
+        <form method="post" action="{% url 'account_logout' %}">
+          {% csrf_token %}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+          {% endif %}
+          {% buttons %}
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-primary" type="submit">{% trans 'Log Out' %}</button>
+            <a class="btn btn-secondary" href="javascript:history.back()" role="button">{% trans 'Cancel' %}</a>
+          </div>
+          {% endbuttons %}
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</main>
+{% endblock %}

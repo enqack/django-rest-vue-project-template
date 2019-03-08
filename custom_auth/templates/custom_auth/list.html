@@ -1,0 +1,62 @@
+{% extends 'base/index.html' %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+
+
+{% block head_title %}{{ block.super }} - {% trans 'User list' %}{% endblock %}
+
+{% block content %}
+<main role="main" class="container">
+
+<div class="d-flex justify-content-center">
+  <div class="col-10">
+
+<table id="user_list" class="table table-striped table-borderless table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">E-Mail</th>
+      <th scope="col">Date Joined</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+    <tr>
+      <th scope="row">{{ object.id }}</th>
+      <td>{{ object.username }}</td>
+      <td>{{ object.email }}</td>
+      <td>{{ object.date_joined }}</td>
+      <td>
+        {% if object.is_active %}
+        <span class="badge badge-success">{% trans 'Active' %}</span>
+        {% else %}
+        <span class="badge badge-danger">{% trans 'Inactive' %}</span>
+        {% endif %}
+      </td>
+      <td>
+        {% if object.is_verified %}
+        <span class="badge badge-success ml-3 align-text-top">{% trans 'Verified' %}</span>
+        {% else %}
+        <a href="{% url 'account_email' %}" class="badge badge-warning ml-3 align-text-top">{% trans 'Unverified' %}</a>
+        {% endif %}
+      </td>
+      <td>
+        <a class="btn btn-sm btn-primary" href="{% url 'custom_auth:account_detail' object.id %}">{% trans 'Detail' %}</a>
+        <a class="btn btn-sm btn-secondary" href="{% url 'custom_auth:account_edit' object.id %}">{% trans 'Edit' %}</a>
+      </td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+</main>
+{% endblock %}

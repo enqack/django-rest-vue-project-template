@@ -1,0 +1,22 @@
+{% extends 'base/index.html' %}
+
+{% load i18n %}
+{% load tz %}
+{% load static %}
+{% load bootstrap4 %}
+{% load fontawesome %}
+
+
+{% block head_title %}{{ block.super }} - {% trans 'Applications' %}{% endblock %}
+
+{% block extra_style %}
+{% endblock %}
+
+{% block content %}
+<main role="main" class="container">
+  <div class="jumbotron">
+    <h1>{% trans 'Applications' %}</h1>
+
+  </div>
+</main>
+{% endblock %}

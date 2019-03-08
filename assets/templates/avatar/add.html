@@ -1,0 +1,30 @@
+{% extends 'base/index.html' %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+{% load avatar_tags %}
+
+{% block head_title %}{{ block.super }} - {% trans "Change avatar" %}{% endblock %}
+
+{% block content %}
+<main role="main" class="container">
+
+<div class="d-flex justify-content-center">
+  <div class="col-5">
+    <p>{% trans "Your current avatar: " %}</p>
+    {% avatar user %}
+    {% if not avatars %}
+        <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
+    {% endif %}
+    <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
+        {% csrf_token %}
+        {% bootstrap_form upload_avatar_form %}
+        {% buttons %}
+        <input class="btn btn-primary" type="submit" value="{% trans "Upload New Image" %}" />
+        {% endbuttons %}
+    </form>
+  </div>
+</div>
+
+</main>
+{% endblock %}

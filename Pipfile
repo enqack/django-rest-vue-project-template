@@ -1,0 +1,32 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+Werkzeug = "*"
+pyOpenSSL = "*"
+v = {editable = true,version = "*"}
+
+[packages]
+django-dotenv = "*"
+django-configurations = "*"
+django-extensions = "*"
+django-debug-toolbar = "*"
+django-widget-tweaks = "*"
+django-extra-views = "*"
+six = "*"
+django-gdpr-assist = "*"
+django-passwords = "*"
+django-avatar = "*"
+django-allauth = "*"
+django-bootstrap4 = "*"
+django-fontawesome = "*"
+dj-database-url = "*"
+psycopg2-binary = "*"
+djangorestframework = "*"
+Django = "*"
+Pillow = "*"
+
+[requires]
+python_version = "3.6"

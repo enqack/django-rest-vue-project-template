@@ -1,0 +1,20 @@
+[
+  {
+    "model": "theme.Theme",
+    "pk": 1,
+    "fields": {
+      "name": "Light",
+      "file_name": "bootswatch-4-flatly-bootstrap.min.css",
+      "default": true
+    }
+  },
+  {
+    "model": "theme.Theme",
+    "pk": 2,
+    "fields": {
+      "name": "Dark",
+      "file_name": "bootswatch-4-darkly-bootstrap.min.css",
+      "default": false
+    }
+  }
+]

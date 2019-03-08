@@ -1,0 +1,30 @@
+{% load i18n %}
+{% load avatar_tags %}
+
+
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{% avatar_url object 200 %}" class="card-img" alt="avatar">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <div class="card-title"><span class="h1">{{ object.username }}</span>
+            {% if object.is_active %}
+            <span class="badge badge-success ml-3 align-text-top">{% trans 'Active' %}</span>
+            {% else %}
+            <span class="badge badge-danger ml-3 align-text-top">{% trans 'Inactive' %}</span>
+            {% endif %}
+          </div>
+          <div class="card-text"><span class="h3">{{ object.email }}</span>
+            {% if object.is_verified %}
+            <span class="badge badge-success ml-3 align-text-top">{% trans 'Verified' %}</span>
+            {% else %}
+            <a href="{% url 'account_email' %}" class="badge badge-warning ml-3 align-text-top">{% trans 'Unverified' %}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
